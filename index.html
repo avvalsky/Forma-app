@@ -1,86 +1,23 @@
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#173f35">
-<meta name="description" content="ФОРМА — питание, домашние тренировки и полезные привычки.">
-<link rel="manifest" href="manifest.webmanifest">
-<title>ФОРМА — твой план</title>
-<style>
-:root{--green:#173f35;--lime:#c9f36a;--orange:#ff8757;--bg:#f5f7f2;--ink:#18231f;--muted:#718078;--card:#fff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,sans-serif}
-header{background:var(--green);color:white;padding:26px 20px 30px;border-radius:0 0 28px 28px}
-.wrap{max-width:760px;margin:auto;padding:0 16px 36px}.brand{font-size:14px;letter-spacing:.18em;font-weight:800;color:var(--lime)}
-h1{font-size:30px;line-height:1.12;margin:18px 0 8px}header p{margin:0;color:#d7e4dc}
-main{margin-top:-12px}.card{background:var(--card);border-radius:20px;padding:18px;margin:14px 0;box-shadow:0 5px 22px #19372a0b}
-.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.tag{background:#edf7d9;color:#31551c;border-radius:99px;padding:6px 10px;font-size:12px;font-weight:700}
-h2{font-size:19px;margin:0 0 12px}.muted{color:var(--muted);font-size:14px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#f2f7ec;border-radius:15px;padding:14px}.stat strong{display:block;font-size:23px;color:var(--green)}
-.tabs{display:flex;gap:8px;overflow:auto;margin:12px 0}.tab,button{border:0;border-radius:12px;padding:11px 14px;font:inherit;font-weight:700;cursor:pointer}
-.tab{background:#e9eee8;color:var(--green);white-space:nowrap}.tab.active{background:var(--green);color:white}
-.task{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #edf0eb}.task:last-child{border:0}
-.task input{width:20px;height:20px;accent-color:var(--green)}.task small{display:block;color:var(--muted)}
-button.primary{background:var(--lime);color:var(--green);width:100%;margin-top:10px}
-.water{display:flex;gap:8px;align-items:center}.water button{background:#eaf2ff;color:#24568c}
-.meal{display:flex;gap:12px;align-items:center;padding:9px 0}.emoji{font-size:28px;background:#f4f5ee;border-radius:12px;padding:10px}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:14px}
-</style>
-</head>
-<body>
-<header><div class="wrap">
-<div class="brand">ФОРМА / WELLNESS</div>
-<h1>Твой день.<br>Твой темп. Твоя форма.</h1>
-<p>Небольшие привычки, которые помогают заботиться о себе.</p>
-</div></header>
-<div class="wrap"><main>
-<section class="card">
-<div class="row"><h2>Твой стартовый план</h2><span class="tag">Новичок</span></div>
-<div class="stats">
-<div class="stat"><strong>3 дня</strong><span class="muted">тренировок в неделю</span></div>
-<div class="stat"><strong>Дома</strong><span class="muted">без специального оборудования</span></div>
-</div>
-<p class="muted">Цель: баланс, регулярная активность и разнообразное питание.</p>
-</section>
-<section class="card">
-<div class="row"><h2>Тренировка недели</h2><span class="muted">15–20 минут</span></div>
-<div class="tabs" id="days">
-<button class="tab active" data-day="Пн">Пн</button><button class="tab" data-day="Ср">Ср</button><button class="tab" data-day="Пт">Пт</button>
-</div>
-<div id="workout"></div>
-<div class="row"><span class="muted" id="progress">Выполнено: 0 из 5</span><span class="tag">Спокойный темп</span></div>
-</section>
-<section class="card">
-<h2>Водный дневник</h2>
-<div class="water"><strong id="waterCount">0 стаканов</strong><span class="muted">— отмечай воду по желанию</span></div>
-<button class="primary" id="addWater">+ Добавить стакан</button>
-</section>
-<section class="card">
-<h2>Идеи для сбалансированного дня</h2>
-<div class="meal"><span class="emoji">🥣</span><div><b>Завтрак</b><div class="muted">Овсянка, йогурт и ягоды</div></div></div>
-<div class="meal"><span class="emoji">🥗</span><div><b>Обед</b><div class="muted">Крупа, бобовые или птица, овощи</div></div></div>
-<div class="meal"><span class="emoji">🐟</span><div><b>Ужин</b><div class="muted">Рыба или тофу, овощи и картофель</div></div></div>
-<p class="muted">Это общие идеи, а не индивидуальная диета. Учитывай аллергию, медицинские ограничения и свои потребности.</p>
-</section>
-</main><footer>ФОРМА — демонстрационный MVP. Не является медицинской рекомендацией.</footer></div>
-<script>
-const routines={
-"Пн":["Разминка — 3–5 минут","Приседания к стулу — 2 × 8","Отжимания от стены — 2 × 8","Ягодичный мостик — 2 × 10","Спокойная заминка — 3 минуты"],
-"Ср":["Разминка — 3–5 минут","Марш на месте — 2 минуты","Птица-собака — 2 × 6 на сторону","Подъёмы на носки — 2 × 10","Спокойная заминка — 3 минуты"],
-"Пт":["Разминка — 3–5 минут","Приседания к стулу — 2 × 8","Отведение ноги назад — 2 × 8","Отжимания от стены — 2 × 8","Спокойная заминка — 3 минуты"]
-};
-let current="Пн", checked={};
-function render(){
- const el=document.getElementById("workout");el.innerHTML="";
- routines[current].forEach((t,i)=>{const label=document.createElement("label");label.className="task";
- const cb=document.createElement("input");cb.type="checkbox";cb.checked=!!(checked[current]&&checked[current][i]);
- cb.addEventListener("change",()=>{checked[current]=checked[current]||{};checked[current][i]=cb.checked;render()});
- const span=document.createElement("span");span.textContent=t;label.append(cb,span);el.append(label)});
- const n=Object.values(checked[current]||{}).filter(Boolean).length;
- document.getElementById("progress").textContent=`Выполнено: ${n} из 5`;
-}
-document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{current=b.dataset.day;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));render()}));
-let water=0;document.getElementById("addWater").addEventListener("click",()=>{water=Math.min(12,water+1);document.getElementById("waterCount").textContent=water+" стаканов"});
-render();
-</script>
-<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}</script>\n</body></html>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#204238"><link rel="manifest" href="./manifest.webmanifest"><title>ФОРМА</title><style>
+:root{--g:#204238;--bg:#f4f6f0;--ink:#1d2924;--muted:#718078}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px -apple-system,BlinkMacSystemFont,sans-serif}header{background:var(--g);color:white;padding:34px 22px 40px;border-radius:0 0 30px 30px}.brand{color:#d5f477;font-weight:800;letter-spacing:4px}h1{font-size:34px;line-height:1.12;margin:24px 0 12px}header p,.small{color:var(--muted);line-height:1.5}header p{color:#d7e2dc}main{max-width:720px;margin:auto;padding:18px 15px 45px}.card{background:white;border-radius:23px;padding:22px;margin-bottom:16px}h2{margin:0 0 12px;font-size:22px}label{display:block;font-weight:650;margin:14px 0 6px}input{width:100%;padding:14px;border:1px solid #d8e0d8;border-radius:13px;font-size:16px}button{border:0;border-radius:13px;padding:14px;font-size:16px;font-weight:700}.primary{background:var(--g);color:white;width:100%;margin-top:14px}.secondary{background:#edf3e9;color:var(--g)}.tabs{display:flex;gap:8px;margin:14px 0}.tabs button{flex:1;background:#edf1eb;color:var(--g)}.tabs .active{background:var(--g);color:white}.status{background:#f0f5e9;padding:12px;border-radius:12px;margin-top:12px;font-size:14px;line-height:1.5}.hidden{display:none!important}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{background:#f1f5eb;border-radius:16px;padding:15px}.tile strong{display:block;font-size:23px;color:var(--g)}.exercise{padding:12px 0;border-bottom:1px solid #e5ebe3}.exercise input{width:20px;margin-right:9px}footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
+</style></head><body><header><div class="brand">ФОРМА / WELLNESS</div><h1>Твой день.<br>Твой темп. Твоя форма.</h1><p>Питание, движение и полезные привычки — в одном месте.</p></header><main>
+<section class="card" id="authCard"><h2>Твой личный кабинет</h2><p class="small">Создай аккаунт или войди, чтобы пользоваться ФОРМА.</p><div class="tabs"><button id="loginTab" class="active" type="button">Войти</button><button id="signupTab" type="button">Регистрация</button></div><form id="authForm"><label for="email">Электронная почта</label><input id="email" type="email" autocomplete="email" required placeholder="you@example.com"><label for="password">Пароль (не менее 8 символов)</label><input id="password" type="password" minlength="8" required><button class="primary" id="submitAuth">Войти</button></form><div class="status" id="authStatus">Сначала добавь Project URL и Publishable key в настройки ниже в коде.</div></section>
+<section class="card hidden" id="appCard"><h2>Привет, <span id="userEmail"></span>!</h2><button class="secondary" id="logoutBtn">Выйти</button></section>
+<section class="card"><h2>Твой стартовый план</h2><div class="grid"><div class="tile"><strong>3 дня</strong><span class="small">тренировок в неделю</span></div><div class="tile"><strong>Дома</strong><span class="small">без оборудования</span></div></div><p class="small">Цель: баланс, регулярная активность и разнообразное питание.</p></section>
+<section class="card"><h2>Тренировка недели</h2><p class="small">Начинай спокойно, подбирай нагрузку по самочувствию.</p><div class="exercise"><label><input type="checkbox">Понедельник — разминка, приседания к стулу, отжимания от стены</label></div><div class="exercise"><label><input type="checkbox">Среда — ходьба на месте, ягодичный мост, растяжка</label></div><div class="exercise"><label><input type="checkbox">Пятница — лёгкая силовая тренировка и заминка</label></div></section>
+<section class="card"><h2>Питание без крайностей</h2><div class="grid"><div class="tile"><b>Завтрак</b><p class="small">Овсянка, йогурт, фрукт</p></div><div class="tile"><b>Обед</b><p class="small">Белок, крупа, овощи</p></div><div class="tile"><b>Перекус</b><p class="small">Фрукт или творог</p></div><div class="tile"><b>Ужин</b><p class="small">Рыба или бобовые, овощи</p></div></div></section>
+<p class="small">ФОРМА — информационный помощник, не медицинская услуга. При заболеваниях, травмах и ограничениях обсуди нагрузку со специалистом.</p></main><footer>ФОРМА · MVP · 18+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+// Вставь только Project URL и Publishable key. Не используй Secret/service_role key.
+const SUPABASE_URL="https://kmjhywcpvygztewvmdsa.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_q6TBzNf1-ZWjOA4n6jMhag_yG3fYmNR";
+let client=null,mode="login";const $=id=>document.getElementById(id);
+function msg(t){$("authStatus").textContent=t}
+function setMode(m){mode=m;$("loginTab").classList.toggle("active",m==="login");$("signupTab").classList.toggle("active",m==="signup");$("submitAuth").textContent=m==="login"?"Войти":"Создать аккаунт"}
+$("loginTab").onclick=()=>setMode("login");$("signupTab").onclick=()=>setMode("signup");
+$("authForm").onsubmit=async e=>{e.preventDefault();if(!client){msg("Подключение не настроено: добавь Project URL и Publishable key в код.");return}const email=$("email").value.trim(),password=$("password").value;$("submitAuth").disabled=true;try{let r=mode==="signup"?await client.auth.signUp({email,password}):await client.auth.signInWithPassword({email,password});if(r.error)throw r.error;if(mode==="signup"&&!r.data.session)msg("Аккаунт создан. Подтверди почту по письму, затем войди.");else if(r.data.user)show(r.data.user)}catch(err){msg(err.message||"Ошибка входа")}finally{$("submitAuth").disabled=false}};
+function show(u){$("authCard").classList.add("hidden");$("appCard").classList.remove("hidden");$("userEmail").textContent=u.email||""}
+$("logoutBtn").onclick=async()=>{if(client)await client.auth.signOut();$("appCard").classList.add("hidden");$("authCard").classList.remove("hidden")};
+if(window.supabase&&SUPABASE_URL.startsWith("https://")&&!SUPABASE_URL.includes("ВСТАВЬ")&&SUPABASE_PUBLISHABLE_KEY.length>20&&!SUPABASE_PUBLISHABLE_KEY.includes("ВСТАВЬ")){client=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);client.auth.getSession().then(({data})=>{if(data.session)show(data.session.user)});client.auth.onAuthStateChange((e,s)=>{if(s)show(s.user)});msg("Supabase подключён. Можно войти или зарегистрироваться.")}
+if("serviceWorker"in navigator&&location.protocol.startsWith("http"))addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+</script></body></html>
