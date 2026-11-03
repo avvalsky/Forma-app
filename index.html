@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173f35">
+<meta name="description" content="ФОРМА — питание, домашние тренировки и полезные привычки.">
+<link rel="manifest" href="manifest.webmanifest">
+<title>ФОРМА — твой план</title>
+<style>
+:root{--green:#173f35;--lime:#c9f36a;--orange:#ff8757;--bg:#f5f7f2;--ink:#18231f;--muted:#718078;--card:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,sans-serif}
+header{background:var(--green);color:white;padding:26px 20px 30px;border-radius:0 0 28px 28px}
+.wrap{max-width:760px;margin:auto;padding:0 16px 36px}.brand{font-size:14px;letter-spacing:.18em;font-weight:800;color:var(--lime)}
+h1{font-size:30px;line-height:1.12;margin:18px 0 8px}header p{margin:0;color:#d7e4dc}
+main{margin-top:-12px}.card{background:var(--card);border-radius:20px;padding:18px;margin:14px 0;box-shadow:0 5px 22px #19372a0b}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.tag{background:#edf7d9;color:#31551c;border-radius:99px;padding:6px 10px;font-size:12px;font-weight:700}
+h2{font-size:19px;margin:0 0 12px}.muted{color:var(--muted);font-size:14px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#f2f7ec;border-radius:15px;padding:14px}.stat strong{display:block;font-size:23px;color:var(--green)}
+.tabs{display:flex;gap:8px;overflow:auto;margin:12px 0}.tab,button{border:0;border-radius:12px;padding:11px 14px;font:inherit;font-weight:700;cursor:pointer}
+.tab{background:#e9eee8;color:var(--green);white-space:nowrap}.tab.active{background:var(--green);color:white}
+.task{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #edf0eb}.task:last-child{border:0}
+.task input{width:20px;height:20px;accent-color:var(--green)}.task small{display:block;color:var(--muted)}
+button.primary{background:var(--lime);color:var(--green);width:100%;margin-top:10px}
+.water{display:flex;gap:8px;align-items:center}.water button{background:#eaf2ff;color:#24568c}
+.meal{display:flex;gap:12px;align-items:center;padding:9px 0}.emoji{font-size:28px;background:#f4f5ee;border-radius:12px;padding:10px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:14px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="brand">ФОРМА / WELLNESS</div>
+<h1>Твой день.<br>Твой темп. Твоя форма.</h1>
+<p>Небольшие привычки, которые помогают заботиться о себе.</p>
+</div></header>
+<div class="wrap"><main>
+<section class="card">
+<div class="row"><h2>Твой стартовый план</h2><span class="tag">Новичок</span></div>
+<div class="stats">
+<div class="stat"><strong>3 дня</strong><span class="muted">тренировок в неделю</span></div>
+<div class="stat"><strong>Дома</strong><span class="muted">без специального оборудования</span></div>
+</div>
+<p class="muted">Цель: баланс, регулярная активность и разнообразное питание.</p>
+</section>
+<section class="card">
+<div class="row"><h2>Тренировка недели</h2><span class="muted">15–20 минут</span></div>
+<div class="tabs" id="days">
+<button class="tab active" data-day="Пн">Пн</button><button class="tab" data-day="Ср">Ср</button><button class="tab" data-day="Пт">Пт</button>
+</div>
+<div id="workout"></div>
+<div class="row"><span class="muted" id="progress">Выполнено: 0 из 5</span><span class="tag">Спокойный темп</span></div>
+</section>
+<section class="card">
+<h2>Водный дневник</h2>
+<div class="water"><strong id="waterCount">0 стаканов</strong><span class="muted">— отмечай воду по желанию</span></div>
+<button class="primary" id="addWater">+ Добавить стакан</button>
+</section>
+<section class="card">
+<h2>Идеи для сбалансированного дня</h2>
+<div class="meal"><span class="emoji">🥣</span><div><b>Завтрак</b><div class="muted">Овсянка, йогурт и ягоды</div></div></div>
+<div class="meal"><span class="emoji">🥗</span><div><b>Обед</b><div class="muted">Крупа, бобовые или птица, овощи</div></div></div>
+<div class="meal"><span class="emoji">🐟</span><div><b>Ужин</b><div class="muted">Рыба или тофу, овощи и картофель</div></div></div>
+<p class="muted">Это общие идеи, а не индивидуальная диета. Учитывай аллергию, медицинские ограничения и свои потребности.</p>
+</section>
+</main><footer>ФОРМА — демонстрационный MVP. Не является медицинской рекомендацией.</footer></div>
+<script>
+const routines={
+"Пн":["Разминка — 3–5 минут","Приседания к стулу — 2 × 8","Отжимания от стены — 2 × 8","Ягодичный мостик — 2 × 10","Спокойная заминка — 3 минуты"],
+"Ср":["Разминка — 3–5 минут","Марш на месте — 2 минуты","Птица-собака — 2 × 6 на сторону","Подъёмы на носки — 2 × 10","Спокойная заминка — 3 минуты"],
+"Пт":["Разминка — 3–5 минут","Приседания к стулу — 2 × 8","Отведение ноги назад — 2 × 8","Отжимания от стены — 2 × 8","Спокойная заминка — 3 минуты"]
+};
+let current="Пн", checked={};
+function render(){
+ const el=document.getElementById("workout");el.innerHTML="";
+ routines[current].forEach((t,i)=>{const label=document.createElement("label");label.className="task";
+ const cb=document.createElement("input");cb.type="checkbox";cb.checked=!!(checked[current]&&checked[current][i]);
+ cb.addEventListener("change",()=>{checked[current]=checked[current]||{};checked[current][i]=cb.checked;render()});
+ const span=document.createElement("span");span.textContent=t;label.append(cb,span);el.append(label)});
+ const n=Object.values(checked[current]||{}).filter(Boolean).length;
+ document.getElementById("progress").textContent=`Выполнено: ${n} из 5`;
+}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{current=b.dataset.day;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));render()}));
+let water=0;document.getElementById("addWater").addEventListener("click",()=>{water=Math.min(12,water+1);document.getElementById("waterCount").textContent=water+" стаканов"});
+render();
+</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}</script>\n</body></html>
