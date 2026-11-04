@@ -1,5 +1,5 @@
 <!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#204238"><link rel="manifest" href="./manifest.webmanifest"><title>ФОРМА</title><style>
-:root{--g:#204238;--bg:#f4f6f0;--ink:#1d2924;--muted:#718078}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px -apple-system,BlinkMacSystemFont,sans-serif}header{background:var(--g);color:white;padding:34px 22px 40px;border-radius:0 0 30px 30px}.brand{color:#d5f477;font-weight:800;letter-spacing:4px}h1{font-size:34px;line-height:1.12;margin:24px 0 12px}header p,.small{color:var(--muted);line-height:1.5}header p{color:#d7e2dc}main{max-width:720px;margin:auto;padding:18px 15px 45px}.card{background:white;border-radius:23px;padding:22px;margin-bottom:16px}h2{margin:0 0 12px;font-size:22px}label{display:block;font-weight:650;margin:14px 0 6px}input{width:100%;padding:14px;border:1px solid #d8e0d8;border-radius:13px;font-size:16px}button{border:0;border-radius:13px;padding:14px;font-size:16px;font-weight:700}.primary{background:var(--g);color:white;width:100%;margin-top:14px}.secondary{background:#edf3e9;color:var(--g)}.tabs{display:flex;gap:8px;margin:14px 0}.tabs button{flex:1;background:#edf1eb;color:var(--g)}.tabs .active{background:var(--g);color:white}.status{background:#f0f5e9;padding:12px;border-radius:12px;margin-top:12px;font-size:14px;line-height:1.5}.hidden{display:none!important}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{background:#f1f5eb;border-radius:16px;padding:15px}.tile strong{display:block;font-size:23px;color:var(--g)}.exercise{padding:12px 0;border-bottom:1px solid #e5ebe3}.exercise input{width:20px;margin-right:9px}footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
+:root{--g:#204238;--bg:#f4f6f0;--ink:#1d2924;--muted:#718078}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px -apple-system,BlinkMacSystemFont,sans-serif}header{background:var(--g);color:white;padding:34px 22px 40px;border-radius:0 0 30px 30px}.brand{color:#d5f477;font-weight:800;letter-spacing:4px}h1{font-size:34px;line-height:1.12;margin:24px 0 12px}header p,.small{color:var(--muted);line-height:1.5}header p{color:#d7e2dc}main{max-width:720px;margin:auto;padding:18px 15px 45px}.card{background:white;border-radius:23px;padding:22px;margin-bottom:16px}h2{margin:0 0 12px;font-size:22px}label{display:block;font-weight:650;margin:14px 0 6px}input,select{width:100%;padding:14px;border:1px solid #d8e0d8;border-radius:13px;font-size:16px;background:white;color:var(--ink)}button{border:0;border-radius:13px;padding:14px;font-size:16px;font-weight:700}.primary{background:var(--g);color:white;width:100%;margin-top:14px}.secondary{background:#edf3e9;color:var(--g)}.tabs{display:flex;gap:8px;margin:14px 0}.tabs button{flex:1;background:#edf1eb;color:var(--g)}.tabs .active{background:var(--g);color:white}.status{background:#f0f5e9;padding:12px;border-radius:12px;margin-top:12px;font-size:14px;line-height:1.5}.hidden{display:none!important}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{background:#f1f5eb;border-radius:16px;padding:15px}.tile strong{display:block;font-size:23px;color:var(--g)}.exercise{padding:12px 0;border-bottom:1px solid #e5ebe3}.exercise input{width:20px;margin-right:9px}footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
 </style></head><body><header><div class="brand">ФОРМА / WELLNESS</div><h1>Твой день.<br>Твой темп. Твоя форма.</h1><p>Питание, движение и полезные привычки — в одном месте.</p></header><main>
 <section class="card" id="authCard"><h2>Твой личный кабинет</h2><p class="small">Создай аккаунт или войди, чтобы пользоваться ФОРМА.</p><div class="tabs"><button id="loginTab" class="active" type="button">Войти</button><button id="signupTab" type="button">Регистрация</button></div><form id="authForm"><div id="nameSignup" class="hidden"><label for="displayName">Имя или никнейм</label><input id="displayName" type="text" maxlength="40" autocomplete="nickname" placeholder="Например, Алексей"></div><label for="email">Электронная почта</label><input id="email" type="email" autocomplete="email" required placeholder="you@example.com"><label for="password">Пароль (не менее 8 символов)</label><input id="password" type="password" minlength="8" required><button class="primary" id="submitAuth">Войти</button></form><div class="status" id="authStatus">Сначала добавь Project URL и Publishable key в настройки ниже в коде.</div></section>
 <section class="card hidden" id="appCard">
@@ -7,10 +7,30 @@
 <p class="small">Рады видеть тебя в ФОРМА.</p>
 <button class="secondary" id="settingsBtn" type="button">Настройки профиля</button>
 <div id="profileSettings" class="status hidden">
-<strong>Твоё имя или никнейм</strong>
-<label for="profileName">Как тебя называть?</label>
+<strong>Личный профиль</strong>
+<label for="profileName">Имя или никнейм</label>
 <input id="profileName" type="text" maxlength="40" placeholder="Например, Юрий">
-<button class="secondary" id="saveNameBtn" type="button">Сохранить имя</button>
+<label for="profileAge">Возраст (18+)</label>
+<input id="profileAge" type="number" min="18" max="120" inputmode="numeric" placeholder="Например, 40">
+<label for="profileHeight">Рост, см</label>
+<input id="profileHeight" type="number" min="100" max="250" step="0.1" inputmode="decimal" placeholder="Например, 175">
+<label for="profileWeight">Вес, кг</label>
+<input id="profileWeight" type="number" min="30" max="350" step="0.1" inputmode="decimal" placeholder="Например, 80">
+<label for="profileGoal">Твоя цель</label>
+<select id="profileGoal">
+<option value="">Выбери цель</option>
+<option value="maintain">Поддерживать форму</option>
+<option value="lose_weight">Снизить вес</option>
+<option value="gain_muscle">Набрать мышечную массу</option>
+</select>
+<label for="profileActivity">Уровень активности</label>
+<select id="profileActivity">
+<option value="">Выбери активность</option>
+<option value="low">Низкий — в основном сижу</option>
+<option value="moderate">Средний — регулярно хожу/двигаюсь</option>
+<option value="high">Высокий — много двигаюсь или тренируюсь</option>
+</select>
+<button class="secondary" id="saveProfileBtn" type="button" style="margin-top:14px">Сохранить профиль</button>
 <p class="small" id="profileStatus"></p>
 </div>
 <button class="secondary" id="logoutBtn" type="button" style="margin-top:12px">Выйти</button>
@@ -28,9 +48,54 @@ function msg(t){$("authStatus").textContent=t}
 function setMode(m){mode=m;$("loginTab").classList.toggle("active",m==="login");$("signupTab").classList.toggle("active",m==="signup");$("submitAuth").textContent=m==="login"?"Войти":"Создать аккаунт";$("nameSignup").classList.toggle("hidden",m!=="signup");$("displayName").required=m==="signup"}
 $("loginTab").onclick=()=>setMode("login");$("signupTab").onclick=()=>setMode("signup");
 $("authForm").onsubmit=async e=>{e.preventDefault();if(!client){msg("Подключение не настроено: добавь Project URL и Publishable key в код.");return}const email=$("email").value.trim(),password=$("password").value,name=$("displayName").value.trim();$("submitAuth").disabled=true;try{let r=mode==="signup"?await client.auth.signUp({email,password,options:{data:{full_name:name}}}):await client.auth.signInWithPassword({email,password});if(r.error)throw r.error;if(mode==="signup"&&!r.data.session)msg("Аккаунт создан. Подтверди почту по письму, затем войди.");else if(r.data.user)show(r.data.user)}catch(err){msg(err.message||"Ошибка входа")}finally{$("submitAuth").disabled=false}};
-function show(u){const name=(u.user_metadata&&u.user_metadata.full_name)||"";$("authCard").classList.add("hidden");$("appCard").classList.remove("hidden");$("userName").textContent=name||"друг";$("profileName").value=name;$("profileSettings").classList.add("hidden");$("profileStatus").textContent=""}
+async function show(u){
+ const name=(u.user_metadata&&u.user_metadata.full_name)||"";
+ $("authCard").classList.add("hidden");$("appCard").classList.remove("hidden");
+ $("userName").textContent=name||"друг";$("profileName").value=name;
+ $("profileSettings").classList.add("hidden");$("profileStatus").textContent="";
+ await loadProfile(u.id);
+}
+async function loadProfile(userId){
+ const {data,error}=await client.from("profiles").select("*").eq("user_id",userId).maybeSingle();
+ if(error){$("profileStatus").textContent="Не удалось загрузить профиль: "+error.message;return}
+ if(!data)return;
+ $("profileName").value=data.display_name||$("profileName").value;
+ $("userName").textContent=data.display_name||$("userName").textContent;
+ $("profileAge").value=data.age??"";
+ $("profileHeight").value=data.height_cm??"";
+ $("profileWeight").value=data.weight_kg??"";
+ $("profileGoal").value=data.goal||"";
+ $("profileActivity").value=data.activity_level||"";
+}
 $("settingsBtn").onclick=()=>{$("profileSettings").classList.toggle("hidden");$("profileStatus").textContent=""};
-$("saveNameBtn").onclick=async()=>{const name=$("profileName").value.trim();if(!name){$("profileStatus").textContent="Введи имя или никнейм.";return}const r=await client.auth.updateUser({data:{full_name:name}});if(r.error){$("profileStatus").textContent=r.error.message;return}$("userName").textContent=name;$("profileStatus").textContent="Имя сохранено!";$("profileSettings").classList.add("hidden")};
+$("saveProfileBtn").onclick=async()=>{
+ const {data:{user}}=await client.auth.getUser();
+ if(!user){$("profileStatus").textContent="Сначала войди в аккаунт.";return}
+ const name=$("profileName").value.trim();
+ const age=$("profileAge").value?Number($("profileAge").value):null;
+ const height=$("profileHeight").value?Number($("profileHeight").value):null;
+ const weight=$("profileWeight").value?Number($("profileWeight").value):null;
+ const goal=$("profileGoal").value||null;
+ const activity=$("profileActivity").value||null;
+ if(!name){$("profileStatus").textContent="Укажи имя или никнейм.";return}
+ if(age!==null&&(!Number.isInteger(age)||age<18||age>120)){$("profileStatus").textContent="Возраст должен быть от 18 до 120 лет.";return}
+ if(height!==null&&(height<100||height>250)){$("profileStatus").textContent="Проверь рост: допустимо от 100 до 250 см.";return}
+ if(weight!==null&&(weight<30||weight>350)){$("profileStatus").textContent="Проверь вес: допустимо от 30 до 350 кг.";return}
+ $("saveProfileBtn").disabled=true;
+ try{
+  const meta=await client.auth.updateUser({data:{full_name:name}});
+  if(meta.error)throw meta.error;
+  const {error}=await client.from("profiles").upsert({
+   user_id:user.id,display_name:name,age,height_cm:height,weight_kg:weight,
+   goal,activity_level:activity,updated_at:new Date().toISOString()
+  },{onConflict:"user_id"});
+  if(error)throw error;
+  $("userName").textContent=name;
+  $("profileStatus").textContent="Профиль сохранён!";
+  $("profileSettings").classList.add("hidden");
+ }catch(err){$("profileStatus").textContent="Не удалось сохранить: "+(err.message||"проверь подключение")}
+ finally{$("saveProfileBtn").disabled=false}
+};
 $("logoutBtn").onclick=async()=>{if(client)await client.auth.signOut();$("appCard").classList.add("hidden");$("authCard").classList.remove("hidden")};
 if(window.supabase&&SUPABASE_URL.startsWith("https://")&&!SUPABASE_URL.includes("ВСТАВЬ")&&SUPABASE_PUBLISHABLE_KEY.length>20&&!SUPABASE_PUBLISHABLE_KEY.includes("ВСТАВЬ")){client=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);client.auth.getSession().then(({data})=>{if(data.session)show(data.session.user)});client.auth.onAuthStateChange((e,s)=>{if(s)show(s.user)});msg("Supabase подключён. Можно войти или зарегистрироваться.")}
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
